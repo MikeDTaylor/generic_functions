@@ -106,19 +106,3 @@ dir_size <- function(paths,
   # Return the numeric vector of results
   results
 }
-
-# Single Directory
-dir_size("G:/My Drive", units = "GB")
-
-# Multiple directories
-dir_size(list.dirs("G:/My Drive", recursive = FALSE), units = "GB")
-
-# Multiple directories within mutate
-dir.check <- fs::dir_info("G:/My Drive",
-                          recurse = FALSE)%>%
-  # filter(type == "directory")%>%
-  mutate(path = as.character(path),
-         size = dir_size(path, units = "GB", recursive = TRUE))%>%
-  arrange(desc(size))%>%
-  dplyr::select(1:3)%>%
-  glimpse
