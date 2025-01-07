@@ -110,7 +110,7 @@ mm_normalise <- function(x, attr = TRUE, ...) {
 mm_denormalise <- function(x, raw = NULL, ...) {
   
   # Confirm either the presence of attributes or a raw vector
-  if(any(all(c("raw.min", "raw.max") %in% names(attributes(x))),
+  if(!any(all(c("raw.min", "raw.max") %in% names(attributes(x))),
          !is.null(raw))) {
     stop("Function requires either the attributes 'raw.min' and 'raw.max' or a numeric vector 'raw'.")
   }
@@ -136,7 +136,7 @@ mm_denormalise <- function(x, raw = NULL, ...) {
     if (all(attributes(x)$raw.min == min(raw, na.rm = TRUE),
             attributes(x)$raw.max == max(raw, na.rm = TRUE))) {
       raw <- NULL
-      warning("Argument 'raw' provided and attributes detected (not recommended), defaulting to raw.min and raw.max from attributes")
+      warning("Both the argument 'raw' and attributes have been detected (not recommended). Defaulting to raw.min and raw.max from attributes.")
     } else {
       stop("Argument 'raw' provided and attributes detected (not recommended). Min and max of argument 'raw' are different to raw.min and raw.max in attributes. Either remove 'raw' and use provided attributes (recommended) or remove attributes.")
     }
@@ -167,4 +167,3 @@ mm_denormalise <- function(x, raw = NULL, ...) {
   return(denormalised)
   
 }
-
