@@ -1,4 +1,4 @@
-#' Load or Install Packages Interactively
+#' Load and/or Install Packages
 #'
 #' Attempts to load the specified packages; if any are missing either installs or 
 #' prompts the user to optionally install them (Windows Only).  If the user chooses
@@ -19,17 +19,17 @@
 #' @examples
 #' \dontrun{
 #' # Attempt to load or install dplyr (and possibly ggplot2) automatically
-#' use_lib("dplyr", "ggplot2")
+#' lib_loadr("dplyr", "ggplot2")
 #'
 #' # Prompt the user via a dialog on Windows
-#' use_lib("readr", ask = TRUE)
+#' lib_loadr("readr", ask = TRUE)
 #'
 #' # Attempt to load a non-existent package "notapkg" and see the warning
-#' use_lib("dplyr", "notapkg")
+#' lib_loadr("dplyr", "notapkg")
 #' }
 #'
 #' @export
-lib_install <- function(..., ask = FALSE) {
+lib_loadr <- function(..., ask = FALSE) {
   
   # Gather all package names into a character vector
   libs <- c(...)
